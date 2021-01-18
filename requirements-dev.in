@@ -1,0 +1,11 @@
+-r requirements.in
+
+flake8==3.8.4
+isort==5.6.4
+ipython==7.12
+black==20.8b1
+pytest
+pytest-cov
+pytest-xdist
+codecov==2.1.7
+freezegun

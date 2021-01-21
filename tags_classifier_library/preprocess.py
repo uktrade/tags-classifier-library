@@ -3,6 +3,7 @@ import re
 from tags_classifier_library.constants import (COLUMN_RELABEL_MAP,
                                                COLUMN_RENAME_MAP, TAG_REMOVED,
                                                TAG_REPLACE_MAP)
+from tags_classifier_library.settings import MIN_SENTENCE_LENGTH
 
 
 def decontracted(phrase):
@@ -97,7 +98,7 @@ def clean_tag(source_df, replace_map=None, removed_tags=None):
     return df
 
 
-def preprocess(fb_all, column_rename_map=None):
+def preprocess(fb_all, column_rename_map=None, min_sentence_length=MIN_SENTENCE_LENGTH):
     if not column_rename_map:
         column_rename_map = COLUMN_RENAME_MAP
 
@@ -107,6 +108,6 @@ def preprocess(fb_all, column_rename_map=None):
     fb_all = exclude_notes(fb_all)
     fb_all["sentence"] = fb_all["sentence"].apply(lambda x: decontracted(x))
     fb_all["length"] = fb_all["sentence"].str.len()
-    fb_all = fb_all[fb_all["length"] > 25]
+    fb_all = fb_all[fb_all["length"] > min_sentence_length]
     fb_all = fb_all.reset_index(drop=True)
     return fb_all

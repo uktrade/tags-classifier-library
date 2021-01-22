@@ -1,0 +1,11 @@
+model_for_tag,size,precisions,recalls,f1,accuracy,auc
+Beta,12,0,0,0,0,0
+Juliett,14,0,0,0,0,0
+Foxtrot,13,0,0,0,0,0
+Echo,10,0,0,0,0,0
+Delta,8,0,0,0,0,0
+Golf,9,0,0,0,0,0
+India,9,0,0,0,0,0
+Hotel,6,0,0,0,0,0
+Charlie,6,0,0,0,0,0
+Alpha,4,0,0,0,0,0

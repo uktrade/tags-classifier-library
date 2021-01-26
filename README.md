@@ -85,6 +85,44 @@ The function will then select top 5 tags for each row of source data and return 
 | probability_score_tag_X | X probability score | a number |
 ...
 
+## Training
+
+To train a model, a training file has to be provided.
+
+The training file should be in a `.csv` format and should contain following columns:
+
+| Column | Description | Example |
+| -------- | ------------- | --------- |
+| id | id of the row | 1 |
+| sentence | A sentence to train from | "Lorem ipsum..." |
+| tags | A list of tags that the `sentence` can be categorised with  | Trade,Tax |
+
+Then the training file should be loaded into data frames:
+
+```
+        df = pd.read_csv(path_to_training_file)
+```        
+
+The resulting data frames need to be preprocessed and a list of tags extracted:
+
+```
+        df, my_tags = preprocess_for_training(df, tags_limit=2)
+```
+`tags_limit` describes how many times a tag needs to occur in the training file to be considered.
+
+Finally, we can run the training:
+
+```
+        metric_df_general, metric_df_covid = build_models_pipeline(
+            df, models_path, tags_general=my_tags, tags_covid=[], overwrite=False
+        )
+```
+
+The `overwrite` parameter can be set to `True`, to overwrite the previous model.
+
+The training function will train separately for general and Covid and that should result in two models being produced, if both general and covid tags are present in the single training file.
+
+The resulting models can now be used for prediction.
 
 ### Coding style
 

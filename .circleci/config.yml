@@ -1,47 +1,65 @@
 version: 2.1
-
-job_defaults: &job_defaults
-  parameters:
-    python_image:
-      type: string
-
-    publish_coverage:
-      type: boolean
-      default: false
-
-  working_directory: ~/app
-
-  docker:
-    - image: <<parameters.python_image>>
-
+aliases:
+  - &python_version circleci/python:3.8.3
+  - &restore_pip_env
+      restore_cache:
+        name: Restore pip environment
+        key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}
 
 jobs:
-  code_quality_checks:
+  build:
     docker:
-      - image: circleci/python:3.8.3
+      - image: *python_version
+    working_directory: ~/app
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - pip-dependencies-{{ checksum "requirements-dev.txt" }}
+      - *restore_pip_env
       - run:
           name: Create virtualenv and install dependencies
           command: |
-              python3 -m venv env
-              . env/bin/activate
-              pip install -r requirements-dev.txt
+            python3 -m venv ../env
+            source ../env/bin/activate
+            pip install -r requirements-dev.txt
+      - save_cache:
+          key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+              - ../env
+  
+  code_quality_checks:
+    docker:
+      - image: *python_version
+    working_directory: ~/app
+    steps:
+      - checkout
+      - *restore_pip_env
       - run:
           name: Run code quality checks
           command: |
-            source env/bin/activate
+            source ../env/bin/activate
+            ls -la
             make checks
-      - save_cache:
-          paths:
-            - env
-          key: pip-dependencies-{{ checksum "requirements-dev.txt" }}
+
+  run_tests:
+    docker:
+      - image: *python_version
+    working_directory: ~/app
+    steps:
+      - checkout
+      - *restore_pip_env
+      - run:
+          name: Run code quality checks
+          command: |
+            source ../env/bin/activate
+            make pytest
 
 workflows:
   version: 2
-  run_tests:
+  validate_pr:
     jobs:
-      - code_quality_checks
+      - build
+      - code_quality_checks:
+          requires:
+            - build
+      - run_tests:
+          requires:
+            - code_quality_checks

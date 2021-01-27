@@ -4,7 +4,7 @@ aliases:
   - &restore_pip_env
       restore_cache:
         name: Restore pip environment
-        key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}
+        key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements-dev.txt" }}
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
             source ../env/bin/activate
             pip install -r requirements-dev.txt
       - save_cache:
-          key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          key: pip-dependencies-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements-dev.txt" }}
           paths:
               - ../env
   

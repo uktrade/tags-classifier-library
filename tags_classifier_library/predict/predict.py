@@ -10,9 +10,11 @@ import pandas as pd
 from keras_preprocessing.text import tokenizer_from_json
 
 from tags_classifier_library.predict.model import ModelInfo, get_model
-from tags_classifier_library.predict.utils import (transform_X,
-                                                   update_df_column_with_prob,
-                                                   update_prediction_dict)
+from tags_classifier_library.predict.utils import (
+    transform_X,
+    update_df_column_with_prob,
+    update_prediction_dict,
+)
 from tags_classifier_library.settings import PROBABILITY_THRESHOLD
 
 logger = logging.getLogger(__name__)

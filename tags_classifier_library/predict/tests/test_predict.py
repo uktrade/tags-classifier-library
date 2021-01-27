@@ -1,6 +1,5 @@
 from tags_classifier_library.predict.model import inspect_model
-from tags_classifier_library.predict.predict import (predict,
-                                                     predict_data_hub_tags)
+from tags_classifier_library.predict.predict import predict, predict_data_hub_tags
 from tags_classifier_library.predict.tests.constants import TEST_MODELS_PATH
 from tags_classifier_library.predict.utils import fetch_prediction_data
 

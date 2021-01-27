@@ -6,19 +6,26 @@ from itertools import compress
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from sklearn.metrics import (accuracy_score, f1_score, precision_score,
-                             recall_score, roc_auc_score)
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.layers import (Conv1D, Dense, Dropout, Embedding,
-                                     GlobalMaxPool1D)
+from tensorflow.keras.layers import Conv1D, Dense, Dropout, Embedding, GlobalMaxPool1D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.preprocessing.text import Tokenizer
 
-from tags_classifier_library.settings import (EMBEDDING_DIM, MAX_NB_WORDS,
-                                              MAX_SEQUENCE_LENGTH,
-                                              PROBABILITY_THRESHOLD)
+from tags_classifier_library.settings import (
+    EMBEDDING_DIM,
+    MAX_NB_WORDS,
+    MAX_SEQUENCE_LENGTH,
+    PROBABILITY_THRESHOLD,
+)
 
 logger = logging.getLogger(__name__)
 

@@ -5,8 +5,7 @@ import pandas as pd
 
 from tags_classifier_library.predict.model import ModelInfo, inspect_model
 from tags_classifier_library.train.preprocess import preprocess_for_training
-from tags_classifier_library.train.tests.constants import \
-    TEST_TRAINING_FILES_PATH
+from tags_classifier_library.train.tests.constants import TEST_TRAINING_FILES_PATH
 from tags_classifier_library.train.train import build_models_pipeline
 
 METRIC_COLUMNS = ["model_for_tag", "size", "precisions", "recalls", "f1", "accuracy", "auc"]

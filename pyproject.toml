@@ -12,3 +12,6 @@ exclude = '''
   | tests-reports
 )/
 '''
+
+[tool.isort]
+profile = "black"

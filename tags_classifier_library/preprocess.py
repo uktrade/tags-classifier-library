@@ -1,8 +1,11 @@
 import re
 
-from tags_classifier_library.constants import (COLUMN_RELABEL_MAP,
-                                               COLUMN_RENAME_MAP, TAG_REMOVED,
-                                               TAG_REPLACE_MAP)
+from tags_classifier_library.constants import (
+    COLUMN_RELABEL_MAP,
+    COLUMN_RENAME_MAP,
+    TAG_REMOVED,
+    TAG_REPLACE_MAP,
+)
 from tags_classifier_library.settings import MIN_SENTENCE_LENGTH
 
 

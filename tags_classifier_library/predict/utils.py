@@ -4,8 +4,7 @@ import logging
 import pandas as pd
 from tensorflow.keras.preprocessing import sequence
 
-from tags_classifier_library.predict.preprocess import \
-    preprocess_for_prediction
+from tags_classifier_library.predict.preprocess import preprocess_for_prediction
 from tags_classifier_library.settings import MAX_SEQUENCE_LENGTH
 
 logger = logging.getLogger(__name__)

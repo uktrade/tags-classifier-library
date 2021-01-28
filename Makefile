@@ -13,6 +13,10 @@ pytest:
 flake8:
 	flake8 .
 
+autoformat:
+	isort $(PWD)
+	black $(PWD)
+
 checks: flake8
 	isort $(PWD) --check
 	black $(PWD) --check --verbose

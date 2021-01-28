@@ -2,9 +2,13 @@ import pandas as pd
 import pytest
 from pandas.testing import assert_frame_equal
 
-from tags_classifier_library.preprocess import (clean_tag, decontracted,
-                                                exclude_notes, preprocess,
-                                                relabel)
+from tags_classifier_library.preprocess import (
+    clean_tag,
+    decontracted,
+    exclude_notes,
+    preprocess,
+    relabel,
+)
 from tags_classifier_library.utils import find_text
 
 TEST_COLUMN_RELABEL_MAP = [

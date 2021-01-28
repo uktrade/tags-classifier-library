@@ -15,7 +15,9 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        "tensorflow==2.3.1"
+    ],
     extras_require={
         "test": [
             "pytest==6.1.0",
